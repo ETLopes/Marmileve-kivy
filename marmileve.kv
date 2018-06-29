@@ -1,0 +1,186 @@
+#: import main main
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+
+<TelaInicial>:
+
+    TextInput:
+        text: 'login'
+        hint_text: 'Login'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .7}
+        id: login_text
+        write_tab: False
+        multiline: False
+
+    TextInput:
+        text: 'senha'
+        hint_text: 'Senha'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .6}
+        id: senha_text
+        write_tab: False
+        multiline: False
+        password: True
+        password_mask: '*'
+    Button:
+        text: 'Entrar'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .4}
+        on_release: root.on_press_bt()
+
+    Label:
+        font_name: 'cour'
+        text: ' __  __          _____  __  __ _____ _      ________      ________ \n|  \/  |   /\   |  __ \|  \/  |_   _| |    |  ____\ \    / |  ____|\n| \  / |  /  \  | |__) | \  / | | | | |    | |__   \ \  / /| |__   \n| |\/| | / /\ \ |  _  /| |\/| | | | | |    |  __|   \ \/ / |  __|  \n| |  | |/ ____ \| | \ \| |  | |_| |_| |____| |____   \  /  | |____ \n|_|  |_/_/    \_|_|  \_|_|  |_|_____|______|______|   \/   |______|\n'
+        size_hint: 1, .2
+        pos_hint: {'x': 0, 'y': .8}
+        font_size: 10
+
+
+
+<TelaMenu>:
+
+    Button:
+        text: 'Pedidos'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .7}
+        on_release: root.add_pedido()
+
+    Button:
+        text: 'Estoque'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .6}
+        on_release: root.show_estoque()
+
+    Button:
+        text: 'Clientes'
+        size_hint: .5, .05
+        pos_hint: {'x': .25, 'y': .5}
+        on_release: root.add_clientes()
+    Button:
+        text: 'Sair'
+        size_hint: 1, .05
+        pos_hint: {'x': 0, 'y': 0}
+        on_release: root.telainicial()
+
+<AddCliente>:
+
+    TextInput:
+        text: ''
+        hint_text: 'Cliente'
+        size_hint: .5, .05
+        pos_hint: {'x': .17, 'y': .80}
+
+    Label:
+        text: 'Cliente'
+        size_hint: .1, .05
+        pos_hint: {'x': .05, 'y': .80}
+        halign: 'left'
+    Button:
+        text: 'Novo'
+        size_hint: .25, .05
+        pos_hint: {'x': .05, 'y': .92}
+    Button:
+        text: 'Editar'
+        size_hint: .25, .05
+        pos_hint: {'x': .35, 'y': .92}
+    Button:
+        text: 'Excluir'
+        size_hint: .25, .05
+        pos_hint: {'x': .70, 'y': .92}
+    Button:
+        text: 'Procurar'
+        size_hint: .9, .05
+        pos_hint: {'x': .05, 'y': .85}
+    Button:
+        text: 'Voltar'
+        size_hint: 1, .05
+        pos_hint: {'x': 0, 'y': 0}
+        on_release: root.telamenu()
+
+<AddPedido>:
+
+    StackLayout:
+        orientation: 'lr-tb'
+        Label:
+            size_hint: .5, .05
+            text: 'Cliente'
+        TextInput:
+            size_hint: .5, .05
+            id: cliente
+            text: 'Eduardo Lopes'
+        Label:
+            size_hint: .5, .05
+            text: 'Prato'
+        TextInput:
+            size_hint: .5, .05
+            id: prato
+            text: '1'
+        Label:
+            size_hint: .5, .05
+            text: 'Tamanho'
+        TextInput:
+            size_hint: .5, .05
+            id: tam
+            text: 'P'
+        Label:
+            size_hint: .5, .05
+            text: 'Quantidade'
+        TextInput:
+            size_hint: .5, .05
+            id: qtd
+            text: '4'
+        Label:
+            size_hint: 1, .5
+            id: resumo
+            text: 'teste'
+            font_name: 'cour.ttf'
+    StackLayout:
+
+        orientation: 'bt-lr'
+
+        Button:
+            text: 'Voltar'
+            size_hint: 1, .05
+            on_release: root.telamenu()
+        Button:
+            text: 'Concluir Pedido'
+            size_hint: 1, .05
+            on_release: root.concluipedido()
+        Button:
+            text: 'Remover Item'
+            size_hint: 1, .05
+            on_release: root.rempedido()
+        Button:
+            text: 'Adicionar Item'
+            size_hint: 1, .05
+            on_release: root.addpedido()
+
+
+<ShowEstoque>:
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Button:
+            text: 'Voltar'
+            size_hint_y: .2
+            on_press: root.telamenu()
+        Button:
+            text: 'Mostrar Estoque'
+            size_hint_y: .2
+            on_press: root.estoquelist()
+
+        Label:
+            text: ''
+            size: self.texture_size
+            halign: 'justify'
+            id: label_estoque
+            font_name: 'cour.ttf'
+
+
+
+
+
+
+TelaInicial:
